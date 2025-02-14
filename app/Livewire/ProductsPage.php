@@ -8,16 +8,18 @@ use App\Models\Brand;
 use App\Models\Category;
 use Livewire\Attributes\Title;
 use App\Models\Product;
+use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Attributes\Url;
 use Livewire\WithPagination;
 
 use Livewire\Component;
 
-#[Title('Products - SdachPage')]
+#[Title('Products - Coding Doubt')]
 
 class ProductsPage extends Component
 {
     use WithPagination;
+    use LivewireAlert;
 
     #[Url]
     public $selected_categories = [];
@@ -40,7 +42,13 @@ class ProductsPage extends Component
     public function addToCart($product_id) {
         $total_count = CartManagement::addCartItem($product_id);
         $this->dispatch('update-cart-count', total_count : $total_count)->to(Navbar::class);
-        
+
+        $this->alert('success', 'Product Added Successfully', [
+            'position' => 'bottom-end',
+            'toast' => true,
+            'timer' => 3000,
+           'showConfirmButton' => false,
+        ]);
     }
     public function render()
     {

@@ -16,5 +16,10 @@
         </main>
         @livewire('partials.footer')
          @livewireScripts
+         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  
+        <x-livewire-alert::scripts />
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
     </body>
 </html>

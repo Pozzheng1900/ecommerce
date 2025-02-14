@@ -11,6 +11,9 @@ class OrderStats extends BaseWidget
 {
     protected function getStats(): array
     {
+        $averagePrice = Order::query()->avg('grand_total');
+        $averagePrice = $averagePrice ? floatval($averagePrice) : 0.00; // Fallback to 0 if null
+
         return [
             Stat::make('New Orders', Order::query()->where('status', 'new')->count())
                 ->icon('heroicon-o-shopping-cart') // 🛒 Shopping Cart Icon
@@ -24,8 +27,8 @@ class OrderStats extends BaseWidget
                 ->icon('heroicon-o-truck') // 🚚 Truck Icon
                 ->color('success'),
 
-            Stat::make('Average Price', Number::currency(Order::query()->avg('grand_total'), 'KHR(៛)'))
-            ->icon('heroicon-o-currency-dollar')
+            Stat::make('Average Price', Number::currency($averagePrice, 'KHR'))
+                ->icon('heroicon-o-currency-dollar')
                 ->description('Average order value in Khmer Riel'),
         ];
     }

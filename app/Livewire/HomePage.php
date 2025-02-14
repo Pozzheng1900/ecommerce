@@ -7,7 +7,7 @@ use App\Models\Category;
 use Livewire\Attributes\Title;
 use Livewire\Component;
 
-#[Title('Home Page - SdachTest')]
+#[Title('Home Page - Coding Doubt')]
 
 class HomePage extends Component
 {
